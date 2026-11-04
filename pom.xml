@@ -81,6 +81,8 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.46</version> 
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -329,6 +331,16 @@
                     <compilerArgs>
                         <arg>-parameters</arg>
                     </compilerArgs>
+                    <!-- 新增配置：强制在编译时加载 Lombok 注解处理器 -->
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <!-- 这里必须和你上面 dependencies 中的 lombok 版本保持一致 -->
+                            <version>1.18.46</version>
+                        </path>
+                        <!-- 如果你还有其他注解处理器，比如 mapstruct、spring-boot-configuration-processor 等，也必须加在这里，否则会失效 -->
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>
