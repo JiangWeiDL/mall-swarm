@@ -60,6 +60,7 @@
         <commons-lang3.version>3.20.0</commons-lang3.version>
         <mall-common.version>1.0-SNAPSHOT</mall-common.version>
         <mall-mbg.version>1.0-SNAPSHOT</mall-mbg.version>
+        <docker.skip>true</docker.skip>
     </properties>
 
     <dependencies>
