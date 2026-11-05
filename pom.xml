@@ -330,7 +330,9 @@
                 <configuration>
                     <compilerArgs>
                         <arg>-parameters</arg>
-                    </compilerArgs>
+                    </compilerArgs>  
+		        <!-- 关键修复：禁用增量编译，避免与 Lombok 冲突 -->
+		        <useIncrementalCompilation>false</useIncrementalCompilation>
                     <!-- 新增配置：强制在编译时加载 Lombok 注解处理器 -->
                     <annotationProcessorPaths>
                         <path>
