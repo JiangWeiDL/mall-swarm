@@ -32,11 +32,3 @@ spec:
               value: http://192.168.3.101:8848
             - name: spring.cloud.nacos.config.server-addr
               value: http://192.168.3.101:8848
-          volumeMounts:
-            - mountPath: /var/logs
-              name: log-volume
-      volumes:
-        - name: log-volume
-          hostPath:
-            path: /mydata/app/mall-admin/logs
-            type: DirectoryOrCreate
