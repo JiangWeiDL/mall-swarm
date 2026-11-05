@@ -35,6 +35,8 @@
         <docker.host>http://192.168.3.101:2375</docker.host>
         <docker.maven.plugin.version>0.45.1</docker.maven.plugin.version>
         <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <spring-boot.version>3.5.14</spring-boot.version>
         <spring-cloud.version>2025.0.2</spring-cloud.version>
         <spring-cloud-alibaba.version>2025.0.0.0</spring-cloud-alibaba.version>
