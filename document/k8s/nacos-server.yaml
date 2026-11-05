@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nacos-server
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nacos-server
+  template:
+    metadata:
+      labels:
+        app: nacos-server
+    spec:
+      containers:
+        - name: nacos-server
+          image: nacos/nacos-server:v2.2.0
+          ports:
+            - containerPort: 8848
+              name: http
+            - containerPort: 9848
+              name: grpc
+          env:
+            - name: MODE
+              value: standalone
+            - name: JVM_XMS
+              value: 512M
+            - name: JVM_XMX
+              value: 512M
+            - name: JVM_XMN
+              value: 256M
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "1"
+              memory: "2Gi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nacos-server
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: nacos-server
+  ports:
+    - name: http
+      port: 8848
+      targetPort: 8848
+    - name: grpc
+      port: 9848
+      targetPort: 9848
