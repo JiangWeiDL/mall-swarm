@@ -59,6 +59,7 @@ env:
     ./document/k8s/mall-portal-service.yaml
     ./document/k8s/mall-search-deployment.yaml
     ./document/k8s/mall-search-service.yaml
+    ./document/k8s/nacos-server.yaml
 
 jobs:
   buildImage:
