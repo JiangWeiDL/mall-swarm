@@ -1720,7 +1720,7 @@ spec:
             - |
               apk add --no-cache curl unzip
               # 下载对应版本的 IK 插件 (如果 GitHub 慢，可换国内镜像源)
-              curl -L -o /tmp/ik.zip https://github.com/infinilabs/analysis-ik/releases/download/v7.17.3/elasticsearch-analysis-ik-7.17.3.zip
+              curl -L -o /tmp/ik.zip https://repo.huaweicloud.com/elasticsearch/elasticsearch-analysis-ik/7.17.3/elasticsearch-analysis-ik-7.17.3.zip
               mkdir -p /usr/share/elasticsearch/plugins/ik
               unzip /tmp/ik.zip -d /usr/share/elasticsearch/plugins/ik
           volumeMounts:
