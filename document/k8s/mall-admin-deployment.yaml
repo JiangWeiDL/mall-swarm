@@ -32,3 +32,15 @@ spec:
               value: http://nacos-server:8848
             - name: spring.cloud.nacos.config.server-addr
               value: http://nacos-server:8848
+            # 覆盖 Nacos 中的数据库地址
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://mysql:3306/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "root"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "root"
+            # 覆盖 Nacos 中的 Redis 地址 (Spring Boot 3 的规范)
+            - name: SPRING_DATA_REDIS_HOST
+              value: "redis"
+            - name: SPRING_DATA_REDIS_PORT
+              value: "6379"
