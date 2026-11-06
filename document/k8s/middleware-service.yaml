@@ -1710,25 +1710,10 @@ spec:
       labels:
         app: elasticsearch
     spec:
-      # 1. 使用 initContainer 在 ES 启动前下载并安装 IK 插件
-      initContainers:
-        - name: install-ik
-          image: alpine:3.18
-          command:
-            - sh
-            - -c
-            - |
-              apk add --no-cache curl unzip
-              # 下载对应版本的 IK 插件 (如果 GitHub 慢，可换国内镜像源)
-              curl -L -o /tmp/ik.zip https://repo.huaweicloud.com/elasticsearch/elasticsearch-analysis-ik/7.17.3/elasticsearch-analysis-ik-7.17.3.zip
-              mkdir -p /usr/share/elasticsearch/plugins/ik
-              unzip /tmp/ik.zip -d /usr/share/elasticsearch/plugins/ik
-          volumeMounts:
-            - name: es-plugins
-              mountPath: /usr/share/elasticsearch/plugins
       containers:
         - name: elasticsearch
-          image: elasticsearch:7.17.3
+          # 🌟 核心改动：使用中国开发者社区提供的自带 IK 插件的镜像
+          image: infiniabc/elasticsearch-ik:7.17.3
           env:
             - name: discovery.type
               value: "single-node"
@@ -1739,19 +1724,12 @@ spec:
           ports:
             - containerPort: 9200
             - containerPort: 9300
-          volumeMounts:
-            - name: es-plugins
-              mountPath: /usr/share/elasticsearch/plugins
-          # 2. 加上探针，确保 ES 真正就绪
           readinessProbe:
             httpGet:
               path: /
               port: 9200
             initialDelaySeconds: 30
             periodSeconds: 10
-      volumes:
-        - name: es-plugins
-          emptyDir: {}
 
 ---
 # ==========================================
