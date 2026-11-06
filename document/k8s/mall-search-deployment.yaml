@@ -46,3 +46,8 @@ spec:
               value: "6379"
             - name: SPRING_ELASTICSEARCH_URIS
               value: "http://elasticsearch:9200"
+          startupProbe:
+              tcpSocket:
+              port: 8081
+              failureThreshold: 30 # 允许失败 30 次
+              periodSeconds: 10    # 每次间隔 10 秒 (总共给 5 分钟的启动时间)
