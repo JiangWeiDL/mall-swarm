@@ -44,3 +44,5 @@ spec:
               value: "redis"
             - name: SPRING_DATA_REDIS_PORT
               value: "6379"
+            - name: SPRING_ELASTICSEARCH_URIS
+              value: "http://elasticsearch:9200"
