@@ -22,13 +22,25 @@ spec:
             - containerPort: 8401
           env:
             # 指定环境
-            - name: spring.profiles.active
+            - name: SPRING_PROFILES_ACTIVE
               value: prod
             # 指定时区
             - name: TZ
               value: Asia/Shanghai
             # 指定Nacos地址
-            - name: spring.cloud.nacos.discovery.server-addr
+            - name: SPRING_CLOUD_NACOS_DISCOVERY_SERVER_ADDR
               value: http://nacos-server:8848
-            - name: spring.cloud.nacos.config.server-addr
+            - name: SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR
               value: http://nacos-server:8848
+            # 覆盖 Nacos 中的数据库地址
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://mysql:3306/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "root"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "root"
+            # 覆盖 Nacos 中的 Redis 地址 (Spring Boot 3 的规范)
+            - name: SPRING_DATA_REDIS_HOST
+              value: "redis"
+            - name: SPRING_DATA_REDIS_PORT
+              value: "6379"
