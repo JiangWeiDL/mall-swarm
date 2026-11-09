@@ -1598,59 +1598,59 @@ data:
     SET FOREIGN_KEY_CHECKS = 1;
 
 ---
-# ==========================================
-# 2. MySQL Deployment
-# ==========================================
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: mysql
-  namespace: default
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: mysql
-  template:
-    metadata:
-      labels:
-        app: mysql
-    spec:
-      containers:
-        - name: mysql
-          image: mysql:5.7
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              value: root
-            - name: MYSQL_DATABASE
-              value: mall
-          ports:
-            - containerPort: 3306
-          volumeMounts:
-            - name: mysql-initdb
-              mountPath: /docker-entrypoint-initdb.d
-      volumes:
-        - name: mysql-initdb
-          configMap:
-            name: mysql-initdb-config
+# # ==========================================
+# # 2. MySQL Deployment
+# # ==========================================
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: mysql
+#   namespace: default
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: mysql
+#   template:
+#     metadata:
+#       labels:
+#         app: mysql
+#     spec:
+#       containers:
+#         - name: mysql
+#           image: mysql:5.7
+#           env:
+#             - name: MYSQL_ROOT_PASSWORD
+#               value: root
+#             - name: MYSQL_DATABASE
+#               value: mall
+#           ports:
+#             - containerPort: 3306
+#           volumeMounts:
+#             - name: mysql-initdb
+#               mountPath: /docker-entrypoint-initdb.d
+#       volumes:
+#         - name: mysql-initdb
+#           configMap:
+#             name: mysql-initdb-config
 
----
-# ==========================================
-# 3. MySQL Service
-# ==========================================
-apiVersion: v1
-kind: Service
-metadata:
-  name: mysql
-  namespace: default
-spec:
-  selector:
-    app: mysql
-  ports:
-    - port: 3306
-      targetPort: 3306
+# ---
+# # ==========================================
+# # 3. MySQL Service
+# # ==========================================
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: mysql
+#   namespace: default
+# spec:
+#   selector:
+#     app: mysql
+#   ports:
+#     - port: 3306
+#       targetPort: 3306
 
----
+# ---
 # ==========================================
 # 4. Redis Deployment
 # ==========================================
@@ -1713,7 +1713,7 @@ spec:
       containers:
         - name: elasticsearch
           # 🌟 核心改动：使用中国开发者社区提供的自带 IK 插件的镜像
-          image: infiniabc/elasticsearch-ik:7.17.3
+          image: registrybwmpoc.azurecr.io/mall/elasticsearch-ik:7.17.3
           env:
             - name: discovery.type
               value: "single-node"
