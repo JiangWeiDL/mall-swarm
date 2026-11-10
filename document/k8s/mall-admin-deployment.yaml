@@ -46,3 +46,5 @@ spec:
               value: "redis"
             - name: SPRING_DATA_REDIS_PORT
               value: "6379"
+            - name: OTEL_LOGS_EXPORTER
+              value: otlp
